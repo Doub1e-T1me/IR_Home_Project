@@ -1,0 +1,900 @@
+[
+    {
+        "id": "2e4cfe220dbdd42a",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "26b424a5a5b3b3c5",
+        "type": "ui_gauge",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "group": "d8ce30c445a31712",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperature",
+        "label": "'C",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 390,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "bc4c8142f7ba9d96",
+        "type": "ui_gauge",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "group": "d8ce30c445a31712",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity",
+        "label": "%",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 380,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b18f6fda1d5ea95f",
+        "type": "ui_gauge",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "group": "d8ce30c445a31712",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Dust",
+        "label": "ug/m3",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 370,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ce04b311217b7daf",
+        "type": "ui_numeric",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "label": "temperature",
+        "tooltip": "",
+        "group": "3b78abaaa9db1d71",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "step": 1,
+        "className": "",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "a46c7efb02965a7d"
+            ]
+        ]
+    },
+    {
+        "id": "e4f586cdc96131b6",
+        "type": "ui_numeric",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "label": "humidity",
+        "tooltip": "",
+        "group": "3b78abaaa9db1d71",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "humidity",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": "5",
+        "className": "",
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "a46c7efb02965a7d"
+            ]
+        ]
+    },
+    {
+        "id": "86ea06c9c2b9f00e",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "topic": "sensor/temp",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "26b424a5a5b3b3c5"
+            ]
+        ]
+    },
+    {
+        "id": "3739600b42a7a0aa",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "topic": "sensor/humid",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "bc4c8142f7ba9d96"
+            ]
+        ]
+    },
+    {
+        "id": "6f58996aecd19940",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "topic": "sensor/dust",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "b18f6fda1d5ea95f"
+            ]
+        ]
+    },
+    {
+        "id": "a46c7efb02965a7d",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "Get Data",
+        "func": "var temp = flow.get('temperature') || 0;\nvar humidity = flow.get('humidity') || 0;\n\nif (msg.topic === 'temperature') {\n    flow.set('temperature', msg.payload);\n    temp = msg.payload;\n} else if (msg.topic === 'humidity') {\n    flow.set('humidity', msg.payload);\n    humidity = msg.payload;\n}\n\nmsg.payload = `Temperature: ${temp}, Humidity: ${humidity}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "f1c5d1a7a80e2795"
+            ]
+        ]
+    },
+    {
+        "id": "f1c5d1a7a80e2795",
+        "type": "file",
+        "z": "2e4cfe220dbdd42a",
+        "name": "File",
+        "filename": "/home/aceontop/my_settings.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 490,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b3716572ed1760d3",
+        "type": "file in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "File",
+        "filename": "/home/aceontop/my_settings.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "268a266b349839c2"
+            ]
+        ]
+    },
+    {
+        "id": "268a266b349839c2",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "file-temp-extract",
+        "func": "var fileData = msg.payload;\n\nif (fileData.includes('Temperature') && fileData.includes('Humidity')) {\n    var temperatureMatch = fileData.match(/Temperature:\\s*(\\d+)/);\n    var humidityMatch = fileData.match(/Humidity:\\s*(\\d+)/);\n\n    if (temperatureMatch && humidityMatch) {\n        var filePayload = {\n            FileTemp: parseInt(temperatureMatch[1], 10),\n            Filehumid: parseInt(humidityMatch[1], 10)\n        };\n        flow.set('fileData', filePayload);\n    }\n} \n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64d4f25f1234af98",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "topic": "sensor/temp",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 620,
+        "wires": [
+            [
+                "3363b3f058909c8a"
+            ]
+        ]
+    },
+    {
+        "id": "eac207d15f2a883a",
+        "type": "mqtt out",
+        "z": "2e4cfe220dbdd42a",
+        "name": "control/ac",
+        "topic": "control/ac",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3338a7d52ef0ff2a",
+        "x": 1080,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "e91edaabc6fb2877",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "control/ac",
+        "topic": "control/ac",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 800,
+        "wires": [
+            [
+                "93180db088f4024d"
+            ]
+        ]
+    },
+    {
+        "id": "570e4b06fee87f70",
+        "type": "inject",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "b3716572ed1760d3"
+            ]
+        ]
+    },
+    {
+        "id": "fcf30b7a347fd233",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "topic": "sensor/humid",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 680,
+        "wires": [
+            [
+                "74bc2f7fdcbd9ea5"
+            ]
+        ]
+    },
+    {
+        "id": "3363b3f058909c8a",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "ParseInt",
+        "func": "var tempString = msg.payload;\nvar temperature = parseInt(tempString, 10);\n\nflow.set('mqttTemp', temperature);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74bc2f7fdcbd9ea5",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "ParseInt",
+        "func": "var humidString = msg.payload; \nvar humidity = parseInt(humidString, 10);\n\nflow.set('mqttHumid', humidity);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4900f7cabfeb125b",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "compare-values",
+        "func": "var fileData = flow.get('fileData');\nvar mqttTemp = flow.get('mqttTemp');\nvar mqttHumid = flow.get('mqttHumid');\n\nif (fileData && mqttTemp !== undefined && mqttHumid !== undefined) {\n    \n    var result = 0;\n    if (mqttTemp > fileData.FileTemp) {\n        result = 1;\n    }\n    if (mqttHumid > fileData.Filehumid) {\n        result = 1;\n    }\n\n    msg.payload = result;  \n\n    return msg;\n}\n\nreturn null;  \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 580,
+        "wires": [
+            [
+                "eac207d15f2a883a",
+                "c837cbbced735407"
+            ]
+        ]
+    },
+    {
+        "id": "ed58926b47cd314d",
+        "type": "inject",
+        "z": "2e4cfe220dbdd42a",
+        "name": "inject",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 730,
+        "y": 580,
+        "wires": [
+            [
+                "4900f7cabfeb125b"
+            ]
+        ]
+    },
+    {
+        "id": "24cea261060e6ff6",
+        "type": "ui_text",
+        "z": "2e4cfe220dbdd42a",
+        "group": "b828cac12da572f4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "실시간으로 적용중 입니다.",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "22",
+        "color": "#000000",
+        "x": 1300,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "93180db088f4024d",
+        "type": "debug",
+        "z": "2e4cfe220dbdd42a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "c837cbbced735407",
+        "type": "file",
+        "z": "2e4cfe220dbdd42a",
+        "name": "AC Info",
+        "filename": "/home/aceontop/info_ac",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1080,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "575095c4ed32d8f1",
+        "type": "ui_button",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "group": "258b68164c888112",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "AC ON",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "7c7beeb710cec308",
+                "2f475c8e5e0f5df8"
+            ]
+        ]
+    },
+    {
+        "id": "596abb202186bcb8",
+        "type": "ui_button",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "group": "258b68164c888112",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "AC OFF",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "b1c818c56660f306",
+                "a8b40683daade288"
+            ]
+        ]
+    },
+    {
+        "id": "480166f5d13b53aa",
+        "type": "ui_text",
+        "z": "2e4cfe220dbdd42a",
+        "group": "258b68164c888112",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f41fafd66ecbcdea",
+        "type": "inject",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.3",
+        "topic": "",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "658366f64999ef60"
+            ]
+        ]
+    },
+    {
+        "id": "658366f64999ef60",
+        "type": "file in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "info_ac",
+        "filename": "/home/aceontop/info_ac",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "216b3db2e2a26dba"
+            ]
+        ]
+    },
+    {
+        "id": "216b3db2e2a26dba",
+        "type": "function",
+        "z": "2e4cfe220dbdd42a",
+        "name": "info_ac",
+        "func": "var value = msg.payload.trim(); \nif (value === \"0\") {\n    msg.payload = \"에어컨이 꺼져있습니다.\";\n} else if (value === \"1\") {\n    msg.payload = \"에어컨이 켜져있습니다.\";\n} else {\n    msg.payload = \"알 수 없는 상태입니다.\";\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "480166f5d13b53aa"
+            ]
+        ]
+    },
+    {
+        "id": "7c7beeb710cec308",
+        "type": "mqtt out",
+        "z": "2e4cfe220dbdd42a",
+        "name": "control/ac",
+        "topic": "control/ac",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3338a7d52ef0ff2a",
+        "x": 860,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b1c818c56660f306",
+        "type": "mqtt out",
+        "z": "2e4cfe220dbdd42a",
+        "name": "control/ac",
+        "topic": "control/ac",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3338a7d52ef0ff2a",
+        "x": 860,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a8b40683daade288",
+        "type": "file",
+        "z": "2e4cfe220dbdd42a",
+        "name": "AC Info",
+        "filename": "/home/aceontop/info_ac",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 860,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f475c8e5e0f5df8",
+        "type": "file",
+        "z": "2e4cfe220dbdd42a",
+        "name": "AC Info",
+        "filename": "/home/aceontop/info_ac",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 860,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09357bed35c547de",
+        "type": "ui_switch",
+        "z": "2e4cfe220dbdd42a",
+        "name": "",
+        "label": "Master Switch",
+        "tooltip": "",
+        "group": "258b68164c888112",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 700,
+        "y": 60,
+        "wires": [
+            [
+                "284a3fa8ecb2555b"
+            ]
+        ]
+    },
+    {
+        "id": "284a3fa8ecb2555b",
+        "type": "mqtt out",
+        "z": "2e4cfe220dbdd42a",
+        "name": "Master Switch",
+        "topic": "control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3338a7d52ef0ff2a",
+        "x": 960,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "321c44b4890c3f3a",
+        "type": "mqtt in",
+        "z": "2e4cfe220dbdd42a",
+        "name": "control",
+        "topic": "control",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3338a7d52ef0ff2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "b7c8638ee59dc99f"
+            ]
+        ]
+    },
+    {
+        "id": "b7c8638ee59dc99f",
+        "type": "debug",
+        "z": "2e4cfe220dbdd42a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d8ce30c445a31712",
+        "type": "ui_group",
+        "name": "Current Weather",
+        "tab": "63bd31f7c2e7d01d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3b78abaaa9db1d71",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "63bd31f7c2e7d01d",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3338a7d52ef0ff2a",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b828cac12da572f4",
+        "type": "ui_group",
+        "name": "Text",
+        "tab": "63bd31f7c2e7d01d",
+        "order": 4,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "258b68164c888112",
+        "type": "ui_group",
+        "name": "Switches",
+        "tab": "63bd31f7c2e7d01d",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "63bd31f7c2e7d01d",
+        "type": "ui_tab",
+        "name": "My Room",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
