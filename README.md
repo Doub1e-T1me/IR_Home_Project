@@ -28,3 +28,7 @@
 - 프로젝트에 사용되는 센서 종류에 따라 `Sensor.ino` 파일의 코드를 수정해야 할 수 있습니다.
 - IR 기기 제어를 위해서는 해당 기기의 IR 코드를 알아내어 `Control.ino` 파일에 추가해야 합니다.
 - MQTT 브로커 서버와 Node-Red의 설치 및 사용 방법은 별도로 확인하시기 바랍니다.
+
+## 시연 영상
+
+- https://youtu.be/ZS2JhMpIhjc?si=eWa0uijaWamBJRaE
