@@ -7,22 +7,22 @@
 
 #define IR_SEND_PIN 9  // IR 센서 핀 번호 정의
 
-IPAddress server(192, 168, 0, 11);  // MQTT 서버 주소
-char ssid[] = "iptime2.4G";         // 와이파이 SSID
-char pass[] = "A1B2C312";           // 와이파이 비밀번호
-int status = WL_IDLE_STATUS;        // 와이파이 상태
+IPAddress server(192, 168, 0, 11);
+char ssid[] = "iptime2.4G";
+char pass[] = "";
+int status = WL_IDLE_STATUS;
 
 WiFiEspClient esp8266Client;
 PubSubClient client(esp8266Client);
-SoftwareSerial esp8266(2, 3);  // RX, TX to ESP-01
+SoftwareSerial esp8266(2, 3);
 
-IRsend irsend;  // IR 센서 객체 생성
+IRsend irsend;
 
 // 에어컨 On/Off에 해당하는 IR 코드 정의
-unsigned long AC_ON_CODE = 0x1234;   // 에어컨 On 코드 (예시)
-unsigned long AC_OFF_CODE = 0x5678;  // 에어컨 Off 코드 (예시)
+unsigned long AC_ON_CODE = 0x1234;   // 에어컨 On 코드
+unsigned long AC_OFF_CODE = 0x5678;  // 에어컨 Off 코드
 
-bool controlEnabled = false;  // control 토픽 값
+bool controlEnabled = false;
 
 void callback(char* topic, byte* payload, unsigned int length) {
   if (strcmp(topic, "control") == 0) {
@@ -45,32 +45,25 @@ void setup() {
 
   irsend.begin();
 
-  // check for the presence of the shield
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
-    // don't continue
     while (true);
   }
 
-  // attempt to connect to WiFi network
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
-    // Connect to WPA/WPA2 network
     status = WiFi.begin(ssid, pass);
     delay(5000);
   }
 
-  // you're connected now, so print out the data
   Serial.println("You're connected to the network");
 
-  // connect to MQTT server
   client.setServer(server, 1883);
   client.setCallback(callback);
 }
 
 void loop() {
-  // reconnect to MQTT server if needed
   if (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     if (client.connect("arduinoClient2")) {
